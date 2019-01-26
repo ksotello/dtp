@@ -40,8 +40,22 @@ describe("<DateTimePicker />", () => {
   it("should display the date time picker when clicking on a trigger component.", done => {
     wrapper = mount(<DateTimePicker trigger={<TriggerComponent />} />);
     wrapper.find(TriggerComponent).simulate("click");
-    wrapper.update();
     expect(wrapper.find(".dtp").length).toBe(1);
+    done();
+  });
+
+  // AC 4: The display of the Date Time Picker should be toggled by the trigger element.
+  it("should display the date time picker when clicking on a trigger component.", done => {
+    wrapper = mount(<DateTimePicker trigger={<TriggerComponent />} />);
+
+    // click the TriggerComponent to display the Date Time Picker
+    wrapper.find(TriggerComponent).simulate("click");
+    expect(wrapper.find(".dtp").length).toBe(1);
+
+    // click the TriggerComponent to hide the Date Time Picker
+    wrapper.find(TriggerComponent).simulate("click");
+    expect(wrapper.find(".dtp").length).toBe(0);
+
     done();
   });
 });
