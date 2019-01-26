@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './styles.css'
+// import styles from './styles.css'
 
 class DateTimePicker extends Component {
   static propTypes = {
-    text: PropTypes.string
+    trigger: PropTypes.node
   }
 
   render() {
     const {
-      text
+      trigger
     } = this.props
 
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
+    return trigger ? React.cloneElement(trigger, {}, null) : <div />
   }
 }
 
