@@ -13,7 +13,7 @@ class DateTimePicker extends Component {
       trigger
     } = this.props
 
-    return trigger ? React.cloneElement(trigger, {}, null) : <div />
+    return trigger ? React.cloneElement(trigger, {}, null) : <div className={'dtp'} />
   }
 }
 

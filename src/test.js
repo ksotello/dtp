@@ -31,4 +31,11 @@ describe('<DateTimePicker />', () => {
     expect(wrapper.find('.dtp').length).toBe(0)
     done()
   })
+
+  // AC 2: If no trigger component it used, the display the date time picker.
+  it('should display the date time picker by default if not trigger is used.', done => {
+    wrapper = mount(<DateTimePicker />)
+    expect(wrapper.find('.dtp').length).toBe(1)
+    done()
+  })
 })
