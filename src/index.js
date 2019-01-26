@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import styles from './styles.css'
 
-export default class ExampleComponent extends Component {
+class DateTimePicker extends Component {
   static propTypes = {
     text: PropTypes.string
   }
@@ -20,3 +20,5 @@ export default class ExampleComponent extends Component {
     )
   }
 }
+
+export { DateTimePicker }
