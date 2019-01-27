@@ -6,6 +6,8 @@ import { mount } from "enzyme";
 import { DateTimePicker } from "./";
 import { TriggerComponent } from "./TriggerComponent";
 
+import { getMonthName } from "./utils";
+
 describe("<DateTimePicker />", () => {
   let wrapper;
 
@@ -56,6 +58,14 @@ describe("<DateTimePicker />", () => {
     wrapper.find(TriggerComponent).simulate("click");
     expect(wrapper.find(".dtp").length).toBe(0);
 
+    done();
+  });
+
+  // AC 5: The Date Picker should always display the current month by default
+  it("should display the current month by default", done => {
+    const date = new Date();
+    wrapper = mount(<DateTimePicker />);
+    expect(wrapper.render().text()).toEqual(getMonthName(date.getMonth()));
     done();
   });
 });

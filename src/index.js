@@ -1,9 +1,13 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
+import { getMonthName } from "./utils";
+
 // import styles from './styles.css'
 
 class DateTimePicker extends Component {
+  date = new Date();
+
   static propTypes = {
     trigger: PropTypes.node
   };
@@ -15,11 +19,19 @@ class DateTimePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayed: !props.trigger
+      displayed: !props.trigger,
+      currentMonth: getMonthName(this.date.getMonth())
     };
   }
 
-  renderDTP = () => <div className={"dtp"} />;
+  renderDTP = () => {
+    const { currentMonth } = this.state;
+    return (
+      <div className={"dtp"}>
+        <h3>{currentMonth}</h3>
+      </div>
+    );
+  }
 
   toggleDisplayed = () => {
     const { displayed } = this.state;
