@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { getMonthName } from "./utils";
+import { getMonthName, daysInMonth } from "./utils";
 
 // import styles from './styles.css'
 
@@ -35,16 +35,30 @@ class DateTimePicker extends Component {
     const { currentMonth, nextMonth } = this.state;
     return (
       <div className={"dtp"}>
-        <div>
-          <h3>{currentMonth}</h3>
+        <div className={"dtp__currentMonth"}>
+          <div className={"dtp__header"}>
+            <h3>{currentMonth}</h3>
+          </div>
+          <div className={"dtp__dates"}>{this.renderDates(currentMonth)}</div>
         </div>
         {nextMonth && (
-          <div>
+          <div className={"dtp__nextMonth"}>
             <h3>{nextMonth}</h3>
           </div>
         )}
       </div>
     );
+  };
+
+  renderDates = month => {
+    const dates = [];
+    let index = 0;
+
+    for (; index < daysInMonth(month); index++) {
+      dates.push(<div key={index}>{index + 1}</div>);
+    }
+
+    return dates;
   };
 
   toggleDisplayed = () => {

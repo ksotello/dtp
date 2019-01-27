@@ -6,10 +6,19 @@ import { mount } from "enzyme";
 import { DateTimePicker } from "./";
 import { TriggerComponent } from "./TriggerComponent";
 
-import { getMonthName } from "./utils";
+import { getMonthName, daysInMonth } from "./utils";
 
 describe("<DateTimePicker />", () => {
   let wrapper;
+
+  const getDaysInMonthStr = numDays => {
+    let str = "";
+    for (let i = 0; i < numDays; i++) {
+      str += i + 1;
+    }
+
+    return str;
+  };
 
   // cleanup
   afterEach(() => {
@@ -65,9 +74,12 @@ describe("<DateTimePicker />", () => {
   it("should display the current month by default", done => {
     const date = new Date();
     wrapper = mount(<DateTimePicker />);
-    expect(wrapper.render().text()).toEqual(
-      getMonthName({ monthIndex: date.getMonth() })
-    );
+    expect(
+      wrapper
+        .find(".dtp__header")
+        .render()
+        .text()
+    ).toEqual(getMonthName({ monthIndex: date.getMonth() }));
     done();
   });
 
@@ -80,6 +92,20 @@ describe("<DateTimePicker />", () => {
     );
     expect(wrapper.render().text()).toMatch(
       new RegExp(getMonthName({ monthIndex: date.getMonth() + 1 }))
+    );
+    done();
+  });
+
+  // AC 7: It should display the correct number of days for the current month
+  it("should display the correct number of days for the current month", done => {
+    const date = new Date();
+    const numDays = daysInMonth({
+      month: getMonthName({ monthIndex: date.getMonth() })
+    });
+
+    wrapper = mount(<DateTimePicker />);
+    expect(wrapper.render().text()).toMatch(
+      new RegExp(getDaysInMonthStr(numDays))
     );
     done();
   });
