@@ -65,7 +65,22 @@ describe("<DateTimePicker />", () => {
   it("should display the current month by default", done => {
     const date = new Date();
     wrapper = mount(<DateTimePicker />);
-    expect(wrapper.render().text()).toEqual(getMonthName(date.getMonth()));
+    expect(wrapper.render().text()).toEqual(
+      getMonthName({ monthIndex: date.getMonth() })
+    );
+    done();
+  });
+
+  // AC 6: If needing to display a range (from August to September) then, display the next month along with the current month.
+  it("should display both the current and next month if a range is needed", done => {
+    const date = new Date();
+    wrapper = mount(<DateTimePicker hasRange />);
+    expect(wrapper.render().text()).toMatch(
+      new RegExp(getMonthName({ monthIndex: date.getMonth() }))
+    );
+    expect(wrapper.render().text()).toMatch(
+      new RegExp(getMonthName({ monthIndex: date.getMonth() + 1 }))
+    );
     done();
   });
 });

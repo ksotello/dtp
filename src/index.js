@@ -9,29 +9,43 @@ class DateTimePicker extends Component {
   date = new Date();
 
   static propTypes = {
-    trigger: PropTypes.node
+    trigger: PropTypes.node,
+    hasRange: PropTypes.bool
   };
 
   static defaultProps = {
-    trigger: null
+    trigger: null,
+    hasRange: false
   };
 
   constructor(props) {
     super(props);
+
+    const { trigger, hasRange } = this.props;
+
     this.state = {
-      displayed: !props.trigger,
-      currentMonth: getMonthName(this.date.getMonth())
+      displayed: !trigger,
+      currentMonth: getMonthName({ monthIndex: this.date.getMonth() }),
+      nextMonth:
+        hasRange && getMonthName({ monthIndex: this.date.getMonth() + 1 })
     };
   }
 
   renderDTP = () => {
-    const { currentMonth } = this.state;
+    const { currentMonth, nextMonth } = this.state;
     return (
       <div className={"dtp"}>
-        <h3>{currentMonth}</h3>
+        <div>
+          <h3>{currentMonth}</h3>
+        </div>
+        {nextMonth && (
+          <div>
+            <h3>{nextMonth}</h3>
+          </div>
+        )}
       </div>
     );
-  }
+  };
 
   toggleDisplayed = () => {
     const { displayed } = this.state;
