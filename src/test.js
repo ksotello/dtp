@@ -109,4 +109,21 @@ describe("<DateTimePicker />", () => {
     );
     done();
   });
+
+  // AC 7: It should display the correct number of days for the next month if a range is used
+  it("should display the correct number of days for the next month if a range is used", done => {
+    const date = new Date();
+    const numDays = daysInMonth({
+      month: getMonthName({ monthIndex: date.getMonth() + 1 })
+    });
+
+    wrapper = mount(<DateTimePicker hasRange />);
+    expect(
+      wrapper
+        .find(".dtp__nextMonth")
+        .render()
+        .text()
+    ).toMatch(new RegExp(getDaysInMonthStr(numDays)));
+    done();
+  });
 });

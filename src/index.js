@@ -43,7 +43,10 @@ class DateTimePicker extends Component {
         </div>
         {nextMonth && (
           <div className={"dtp__nextMonth"}>
-            <h3>{nextMonth}</h3>
+            <div className={"dtp__header"}>
+              <h3>{nextMonth}</h3>
+            </div>
+            <div className={"dtp__dates"}>{this.renderDates(nextMonth)}</div>
           </div>
         )}
       </div>
