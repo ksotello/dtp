@@ -13,8 +13,10 @@ const months = [
   "December"
 ];
 
-const daysInMonth = ({ month, year }) => {
-  return new Date(year, month, 0).getDate();
+const date = new Date();
+
+const daysInMonth = ({ month = months[0], year = date.getFullYear() }) => {
+  return new Date(year, months.indexOf(month) + 1, 0).getDate();
 };
 
 const getMonthName = ({ monthIndex = 0 }) => {
