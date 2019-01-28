@@ -58,14 +58,15 @@ class DateTimePicker extends Component {
     let index = 0;
 
     for (; index < daysInMonth(month); index++) {
+      let currentDay = index + 1;
       dates.push(
         <div
           key={index}
           className={`dtp__date ${
-            this.date.getDate() === index + 1 ? "dtp__date--highlighted" : ""
+            this.date.getDate() === currentDay ? "dtp__date--highlighted" : ""
           }`}
         >
-          {index + 1}
+          {currentDay}
         </div>
       );
     }

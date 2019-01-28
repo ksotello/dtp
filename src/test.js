@@ -122,6 +122,7 @@ describe("<DateTimePicker />", () => {
   it("should hightlight the current date", done => {
     const date = new Date();
     wrapper = mount(<DateTimePicker />);
+    expect(wrapper.find(".dtp__date--highlighted").length).toBe(1);
     expect(
       wrapper
         .find(".dtp__date--highlighted")
