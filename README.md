@@ -10,7 +10,7 @@
 npm install --save dtp
 ```
 
-## Usage
+## Basic Usage
 
 ```jsx
 import React, { Component } from 'react'
