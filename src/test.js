@@ -32,7 +32,6 @@ describe("<DateTimePicker />", () => {
     done();
   });
 
-  // AC 1: If using a trigger component, then hide the date time picker by default.
   it("should be hidden by default if a trigger component is used.", done => {
     wrapper = mount(<DateTimePicker trigger={<TriggerComponent />} />);
     expect(wrapper.find(TriggerComponent).length).toBe(1);
@@ -40,14 +39,12 @@ describe("<DateTimePicker />", () => {
     done();
   });
 
-  // AC 2: If no trigger component it used, the display the date time picker.
   it("should display the date time picker by default if not trigger is used.", done => {
     wrapper = mount(<DateTimePicker />);
     expect(wrapper.find(".dtp").length).toBe(1);
     done();
   });
 
-  // AC 3: When clicking a tigger component it should display the DateTimePicker.
   it("should display the date time picker when clicking on a trigger component.", done => {
     wrapper = mount(<DateTimePicker trigger={<TriggerComponent />} />);
     wrapper.find(TriggerComponent).simulate("click");
@@ -55,7 +52,6 @@ describe("<DateTimePicker />", () => {
     done();
   });
 
-  // AC 4: The display of the Date Time Picker should be toggled by the trigger element.
   it("should display the date time picker when clicking on a trigger component.", done => {
     wrapper = mount(<DateTimePicker trigger={<TriggerComponent />} />);
 
@@ -70,7 +66,6 @@ describe("<DateTimePicker />", () => {
     done();
   });
 
-  // AC 5: The Date Picker should always display the current month by default
   it("should display the current month by default", done => {
     const date = new Date();
     wrapper = mount(<DateTimePicker />);
@@ -83,7 +78,6 @@ describe("<DateTimePicker />", () => {
     done();
   });
 
-  // AC 6: If needing to display a range (from August to September) then, display the next month along with the current month.
   it("should display both the current and next month if a range is needed", done => {
     const date = new Date();
     wrapper = mount(<DateTimePicker hasRange />);
@@ -96,7 +90,6 @@ describe("<DateTimePicker />", () => {
     done();
   });
 
-  // AC 7: It should display the correct number of days for the current month
   it("should display the correct number of days for the current month", done => {
     const date = new Date();
     const numDays = daysInMonth({
@@ -110,7 +103,6 @@ describe("<DateTimePicker />", () => {
     done();
   });
 
-  // AC 7: It should display the correct number of days for the next month if a range is used
   it("should display the correct number of days for the next month if a range is used", done => {
     const date = new Date();
     const numDays = daysInMonth({
@@ -124,6 +116,18 @@ describe("<DateTimePicker />", () => {
         .render()
         .text()
     ).toMatch(new RegExp(getDaysInMonthStr(numDays)));
+    done();
+  });
+
+  it("should hightlight the current date", done => {
+    const date = new Date();
+    wrapper = mount(<DateTimePicker />);
+    expect(
+      wrapper
+        .find(".dtp__date--highlighted")
+        .render()
+        .text()
+    ).toEqual(date.getDate().toString());
     done();
   });
 });

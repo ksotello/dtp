@@ -58,7 +58,16 @@ class DateTimePicker extends Component {
     let index = 0;
 
     for (; index < daysInMonth(month); index++) {
-      dates.push(<div key={index}>{index + 1}</div>);
+      dates.push(
+        <div
+          key={index}
+          className={`dtp__date ${
+            this.date.getDate() === index + 1 ? "dtp__date--highlighted" : ""
+          }`}
+        >
+          {index + 1}
+        </div>
+      );
     }
 
     return dates;
