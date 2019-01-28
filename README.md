@@ -15,12 +15,12 @@ npm install --save dtp
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'dtp'
+import { DateTimePicker } from 'dtp'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <DateTimePicker />
     )
   }
 }
