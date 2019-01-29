@@ -9,7 +9,7 @@ import { TriggerComponent } from "./TriggerComponent";
 import { getMonthName, daysInMonth } from "./utils";
 
 describe("<DateTimePicker />", () => {
-  let wrapper;
+  let wrapper, date;
 
   const getDaysInMonthStr = numDays => {
     let str = "";
@@ -20,10 +20,15 @@ describe("<DateTimePicker />", () => {
     return str;
   };
 
+  // prebuild the things
+  beforeEach(() => {
+    date = new Date();
+  });
+
   // cleanup
   afterEach(() => {
     wrapper && wrapper.unmount();
-    wrapper = null;
+    wrapper = date = null;
   });
 
   it("should mount", done => {
@@ -67,19 +72,17 @@ describe("<DateTimePicker />", () => {
   });
 
   it("should display the current month by default", done => {
-    const date = new Date();
     wrapper = mount(<DateTimePicker />);
     expect(
       wrapper
         .find(".dtp__header")
         .render()
         .text()
-    ).toEqual(getMonthName({ monthIndex: date.getMonth() }));
+    ).toMatch(new RegExp(getMonthName({ monthIndex: date.getMonth() })));
     done();
   });
 
   it("should display both the current and next month if a range is needed", done => {
-    const date = new Date();
     wrapper = mount(<DateTimePicker hasRange />);
     expect(wrapper.render().text()).toMatch(
       new RegExp(getMonthName({ monthIndex: date.getMonth() }))
@@ -91,7 +94,6 @@ describe("<DateTimePicker />", () => {
   });
 
   it("should display the correct number of days for the current month", done => {
-    const date = new Date();
     const numDays = daysInMonth({
       month: getMonthName({ monthIndex: date.getMonth() })
     });
@@ -104,7 +106,6 @@ describe("<DateTimePicker />", () => {
   });
 
   it("should display the correct number of days for the next month if a range is used", done => {
-    const date = new Date();
     const numDays = daysInMonth({
       month: getMonthName({ monthIndex: date.getMonth() + 1 })
     });
@@ -120,7 +121,6 @@ describe("<DateTimePicker />", () => {
   });
 
   it("should hightlight the current date", done => {
-    const date = new Date();
     wrapper = mount(<DateTimePicker />);
     expect(wrapper.find(".dtp__date--highlighted").length).toBe(1);
     expect(
@@ -129,6 +129,12 @@ describe("<DateTimePicker />", () => {
         .render()
         .text()
     ).toEqual(date.getDate().toString());
+    done();
+  });
+
+  it("should display the current year by default", done => {
+    wrapper = mount(<DateTimePicker />);
+    expect(wrapper.render().text()).toMatch(new RegExp(date.getUTCFullYear()));
     done();
   });
 });

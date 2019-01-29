@@ -37,7 +37,7 @@ class DateTimePicker extends Component {
       <div className={"dtp"}>
         <div className={"dtp__currentMonth"}>
           <div className={"dtp__header"}>
-            <h3>{currentMonth}</h3>
+            <h3>{currentMonth} {this.date.getUTCFullYear()}</h3>
           </div>
           <div className={"dtp__dates"}>{this.renderDates(currentMonth)}</div>
         </div>

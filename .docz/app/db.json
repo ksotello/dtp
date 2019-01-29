@@ -1,0 +1,14 @@
+{
+  "config": {
+    "title": "Dtp",
+    "description": "Date Time Picker",
+    "menu": [],
+    "ordering": "descending",
+    "version": "1.0.0",
+    "repository": "https://github.com/ksotello/dtp",
+    "native": false,
+    "codeSandbox": true,
+    "themeConfig": {}
+  },
+  "entries": {}
+}
