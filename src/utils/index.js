@@ -20,7 +20,7 @@ const daysInMonth = ({ month = months[0], year = date.getFullYear() }) => {
 };
 
 const getMonthName = ({ monthIndex = 0 }) => {
-  return months[monthIndex];
+  return months[((monthIndex + months.length + 1) % months.length) - 1];
 };
 
 export { daysInMonth, getMonthName };

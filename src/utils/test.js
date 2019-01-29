@@ -8,6 +8,12 @@ describe("The utility suite", () => {
   });
 
   describe("getMonthName()", () => {
-    expect(getMonthName({ monthIndex: 9 })).toBe("October");
+    it("should return the correct month name", () => {
+      expect(getMonthName({ monthIndex: 9 })).toBe("October");
+    });
+
+    it("should return January as the next month if the current month is December", () => {
+      expect(getMonthName({ monthIndex: 12 })).toBe("January");
+    });
   });
 });
