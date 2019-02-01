@@ -1,13 +1,13 @@
-# dtp
+# Pykz
 
 > Date Time Picker
 
-[![NPM](https://img.shields.io/npm/v/dtp.svg)](https://www.npmjs.com/package/dtp) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/pykz.svg)](https://www.npmjs.com/package/pykz) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save dtp
+npm install --save pykz
 ```
 
 ## Basic Usage
