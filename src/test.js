@@ -40,20 +40,20 @@ describe("<Pykz />", () => {
   it("should be hidden by default if a trigger component is used.", done => {
     wrapper = mount(<Pykz trigger={<TriggerComponent />} />);
     expect(wrapper.find(TriggerComponent).length).toBe(1);
-    expect(wrapper.find(".dtp").length).toBe(0);
+    expect(wrapper.find(".pykz").length).toBe(0);
     done();
   });
 
   it("should display the date picker by default if not trigger is used.", done => {
     wrapper = mount(<Pykz />);
-    expect(wrapper.find(".dtp").length).toBe(1);
+    expect(wrapper.find(".pykz").length).toBe(1);
     done();
   });
 
   it("should display the date time picker when clicking on a trigger component.", done => {
     wrapper = mount(<Pykz trigger={<TriggerComponent />} />);
     wrapper.find(TriggerComponent).simulate("click");
-    expect(wrapper.find(".dtp").length).toBe(1);
+    expect(wrapper.find(".pykz").length).toBe(1);
     done();
   });
 
@@ -62,11 +62,11 @@ describe("<Pykz />", () => {
 
     // click the TriggerComponent to display the Date Time Picker
     wrapper.find(TriggerComponent).simulate("click");
-    expect(wrapper.find(".dtp").length).toBe(1);
+    expect(wrapper.find(".pykz").length).toBe(1);
 
     // click the TriggerComponent to hide the Date Time Picker
     wrapper.find(TriggerComponent).simulate("click");
-    expect(wrapper.find(".dtp").length).toBe(0);
+    expect(wrapper.find(".pykz").length).toBe(0);
 
     done();
   });
@@ -75,7 +75,7 @@ describe("<Pykz />", () => {
     wrapper = mount(<Pykz />);
     expect(
       wrapper
-        .find(".dtp__header")
+        .find(".pykz__header")
         .render()
         .text()
     ).toMatch(new RegExp(getMonthName({ monthIndex: date.getMonth() })));
@@ -113,7 +113,7 @@ describe("<Pykz />", () => {
     wrapper = mount(<Pykz hasRange />);
     expect(
       wrapper
-        .find(".dtp__nextMonth")
+        .find(".pykz__nextMonth")
         .render()
         .text()
     ).toMatch(new RegExp(getDaysInMonthStr(numDays)));
@@ -122,10 +122,10 @@ describe("<Pykz />", () => {
 
   it("should hightlight the current date", done => {
     wrapper = mount(<Pykz />);
-    expect(wrapper.find(".dtp__date--highlighted").length).toBe(1);
+    expect(wrapper.find(".pykz__date--highlighted").length).toBe(1);
     expect(
       wrapper
-        .find(".dtp__date--highlighted")
+        .find(".pykz__date--highlighted")
         .render()
         .text()
     ).toEqual(date.getDate().toString());

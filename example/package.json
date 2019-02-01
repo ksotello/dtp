@@ -1,6 +1,6 @@
 {
-  "name": "dtp-example",
-  "homepage": "https://ksotello.github.io/dtp",
+  "name": "pyzk-example",
+  "homepage": "https://ksotello.github.io/pykz",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -9,7 +9,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
-    "dtp": "file:.."
+    "pykz": "file:.."
   },
   "scripts": {
     "start": "react-scripts start",

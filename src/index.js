@@ -31,24 +31,24 @@ class Pykz extends Component {
     };
   }
 
-  renderDTP = () => {
+  renderpykz = () => {
     const { currentMonth, nextMonth } = this.state;
     return (
-      <div className={"dtp"}>
-        <div className={"dtp__currentMonth"}>
-          <div className={"dtp__header"}>
+      <div className={"pykz"}>
+        <div className={"pykz__currentMonth"}>
+          <div className={"pykz__header"}>
             <h3>
               {currentMonth} {this.date.getUTCFullYear()}
             </h3>
           </div>
-          <div className={"dtp__dates"}>{this.renderDates(currentMonth)}</div>
+          <div className={"pykz__dates"}>{this.renderDates(currentMonth)}</div>
         </div>
         {nextMonth && (
-          <div className={"dtp__nextMonth"}>
-            <div className={"dtp__header"}>
+          <div className={"pykz__nextMonth"}>
+            <div className={"pykz__header"}>
               <h3>{nextMonth}</h3>
             </div>
-            <div className={"dtp__dates"}>{this.renderDates(nextMonth)}</div>
+            <div className={"pykz__dates"}>{this.renderDates(nextMonth)}</div>
           </div>
         )}
       </div>
@@ -64,8 +64,8 @@ class Pykz extends Component {
       dates.push(
         <div
           key={index}
-          className={`dtp__date ${
-            this.date.getDate() === currentDay ? "dtp__date--highlighted" : ""
+          className={`pykz__date ${
+            this.date.getDate() === currentDay ? "pykz__date--highlighted" : ""
           }`}
         >
           {currentDay}
@@ -90,10 +90,10 @@ class Pykz extends Component {
         {trigger && (
           <Fragment>
             {React.cloneElement(trigger, { onClick: this.toggleDisplayed })}
-            {displayed && this.renderDTP()}
+            {displayed && this.renderpykz()}
           </Fragment>
         )}
-        {!trigger && this.renderDTP()}
+        {!trigger && this.renderpykz()}
       </Fragment>
     );
   }

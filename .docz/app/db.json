@@ -1,11 +1,11 @@
 {
   "config": {
-    "title": "Dtp",
+    "title": "Pykz",
     "description": "Date Time Picker",
     "menu": [],
     "ordering": "descending",
     "version": "1.0.0",
-    "repository": "https://github.com/ksotello/dtp",
+    "repository": "https://github.com/ksotello/pykz",
     "native": false,
     "codeSandbox": true,
     "themeConfig": {}
