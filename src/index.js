@@ -5,7 +5,7 @@ import { getMonthName, daysInMonth } from "./utils";
 
 // import styles from './styles.css'
 
-class DateTimePicker extends Component {
+class Pykz extends Component {
   date = new Date();
 
   static propTypes = {
@@ -99,4 +99,4 @@ class DateTimePicker extends Component {
   }
 }
 
-export { DateTimePicker };
+export { Pykz };

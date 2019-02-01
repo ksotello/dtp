@@ -3,12 +3,12 @@ import "./setupTests";
 import React from "react";
 import { mount } from "enzyme";
 
-import { DateTimePicker } from "./";
+import { Pykz } from "./";
 import { TriggerComponent } from "./TriggerComponent";
 
 import { getMonthName, daysInMonth } from "./utils";
 
-describe("<DateTimePicker />", () => {
+describe("<Pykz />", () => {
   let wrapper, date;
 
   const getDaysInMonthStr = numDays => {
@@ -32,33 +32,33 @@ describe("<DateTimePicker />", () => {
   });
 
   it("should mount", done => {
-    wrapper = mount(<DateTimePicker />);
+    wrapper = mount(<Pykz />);
     expect(wrapper.exists()).toBe(true);
     done();
   });
 
   it("should be hidden by default if a trigger component is used.", done => {
-    wrapper = mount(<DateTimePicker trigger={<TriggerComponent />} />);
+    wrapper = mount(<Pykz trigger={<TriggerComponent />} />);
     expect(wrapper.find(TriggerComponent).length).toBe(1);
     expect(wrapper.find(".dtp").length).toBe(0);
     done();
   });
 
-  it("should display the date time picker by default if not trigger is used.", done => {
-    wrapper = mount(<DateTimePicker />);
+  it("should display the date picker by default if not trigger is used.", done => {
+    wrapper = mount(<Pykz />);
     expect(wrapper.find(".dtp").length).toBe(1);
     done();
   });
 
   it("should display the date time picker when clicking on a trigger component.", done => {
-    wrapper = mount(<DateTimePicker trigger={<TriggerComponent />} />);
+    wrapper = mount(<Pykz trigger={<TriggerComponent />} />);
     wrapper.find(TriggerComponent).simulate("click");
     expect(wrapper.find(".dtp").length).toBe(1);
     done();
   });
 
   it("should display the date time picker when clicking on a trigger component.", done => {
-    wrapper = mount(<DateTimePicker trigger={<TriggerComponent />} />);
+    wrapper = mount(<Pykz trigger={<TriggerComponent />} />);
 
     // click the TriggerComponent to display the Date Time Picker
     wrapper.find(TriggerComponent).simulate("click");
@@ -72,7 +72,7 @@ describe("<DateTimePicker />", () => {
   });
 
   it("should display the current month by default", done => {
-    wrapper = mount(<DateTimePicker />);
+    wrapper = mount(<Pykz />);
     expect(
       wrapper
         .find(".dtp__header")
@@ -83,7 +83,7 @@ describe("<DateTimePicker />", () => {
   });
 
   it("should display both the current and next month if a range is needed", done => {
-    wrapper = mount(<DateTimePicker hasRange />);
+    wrapper = mount(<Pykz hasRange />);
     expect(wrapper.render().text()).toMatch(
       new RegExp(getMonthName({ monthIndex: date.getMonth() }))
     );
@@ -98,7 +98,7 @@ describe("<DateTimePicker />", () => {
       month: getMonthName({ monthIndex: date.getMonth() })
     });
 
-    wrapper = mount(<DateTimePicker />);
+    wrapper = mount(<Pykz />);
     expect(wrapper.render().text()).toMatch(
       new RegExp(getDaysInMonthStr(numDays))
     );
@@ -110,7 +110,7 @@ describe("<DateTimePicker />", () => {
       month: getMonthName({ monthIndex: date.getMonth() + 1 })
     });
 
-    wrapper = mount(<DateTimePicker hasRange />);
+    wrapper = mount(<Pykz hasRange />);
     expect(
       wrapper
         .find(".dtp__nextMonth")
@@ -121,7 +121,7 @@ describe("<DateTimePicker />", () => {
   });
 
   it("should hightlight the current date", done => {
-    wrapper = mount(<DateTimePicker />);
+    wrapper = mount(<Pykz />);
     expect(wrapper.find(".dtp__date--highlighted").length).toBe(1);
     expect(
       wrapper
@@ -133,8 +133,10 @@ describe("<DateTimePicker />", () => {
   });
 
   it("should display the current year by default", done => {
-    wrapper = mount(<DateTimePicker />);
+    wrapper = mount(<Pykz />);
     expect(wrapper.render().text()).toMatch(new RegExp(date.getUTCFullYear()));
     done();
   });
+
+  // it should 
 });

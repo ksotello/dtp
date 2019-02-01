@@ -15,12 +15,12 @@ npm install --save dtp
 ```jsx
 import React, { Component } from 'react'
 
-import { DateTimePicker } from 'dtp'
+import { Pykz } from 'pykz'
 
 class Example extends Component {
   render () {
     return (
-      <DateTimePicker />
+      <Pykz />
     )
   }
 }
