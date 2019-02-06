@@ -138,5 +138,15 @@ describe("<Pykz />", () => {
     done();
   });
 
-  // it should 
+  it("should display the next month as January if the current month is December", done => {
+    const spy = jest.spyOn(Date.prototype, "getMonth");
+    spy.mockReturnValue(11);
+
+    wrapper = mount(<Pykz hasRange />);
+
+    expect(wrapper.render().text()).toMatch(new RegExp("December"));
+    expect(wrapper.render().text()).toMatch(new RegExp("January"));
+
+    done();
+  }); 
 });

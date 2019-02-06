@@ -41,14 +41,14 @@ class Pykz extends Component {
               {currentMonth} {this.date.getUTCFullYear()}
             </h3>
           </div>
-          <div className={"pykz__dates"}>{this.renderDates(currentMonth)}</div>
+          <ul className={"pykz__dates"}>{this.renderDates(currentMonth)}</ul>
         </div>
         {nextMonth && (
           <div className={"pykz__nextMonth"}>
             <div className={"pykz__header"}>
               <h3>{nextMonth}</h3>
             </div>
-            <div className={"pykz__dates"}>{this.renderDates(nextMonth)}</div>
+            <ul className={"pykz__dates"}>{this.renderDates(nextMonth)}</ul>
           </div>
         )}
       </div>
@@ -62,14 +62,14 @@ class Pykz extends Component {
     for (; index < daysInMonth(month); index++) {
       let currentDay = index + 1;
       dates.push(
-        <div
-          key={index}
+        <li
+          key={currentDay}
           className={`pykz__date ${
             this.date.getDate() === currentDay ? "pykz__date--highlighted" : ""
           }`}
         >
           {currentDay}
-        </div>
+        </li>
       );
     }
 
