@@ -2,8 +2,7 @@
 
 > Date Time Picker
 
-[![NPM](https://img.shields.io/npm/v/pykz.svg)](https://www.npmjs.com/package/pykz) [![JavaScript Style Guide]
-(https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/pykz.svg)](https://www.npmjs.com/package/pykz) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/ksotello/pykz.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ksotello/pykz/alerts/)
 
