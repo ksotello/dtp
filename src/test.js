@@ -148,5 +148,20 @@ describe("<Pykz />", () => {
     expect(wrapper.render().text()).toMatch(new RegExp("January"));
 
     done();
-  }); 
+  });
+
+  it("should display the next year as 1970 if the next month is January and the current month is December", done => {
+    const monthSpy = jest.spyOn(Date.prototype, "getMonth");
+    const yearSpy = jest.spyOn(Date.prototype, "getUTCFullYear");
+
+    monthSpy.mockReturnValue(11);
+    yearSpy.mockReturnValue(1969);
+
+    wrapper = mount(<Pykz hasRange />);
+
+    expect(wrapper.render().text()).toMatch(new RegExp("1969"));
+    expect(wrapper.render().text()).toMatch(new RegExp("1970"));
+
+    done();
+  });
 });

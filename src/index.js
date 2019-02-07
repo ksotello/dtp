@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { getMonthName, daysInMonth } from "./utils";
+import { getMonthName, daysInMonth, getYear } from "./utils";
 
 // import styles from './styles.css'
 
@@ -31,14 +31,16 @@ class Pykz extends Component {
     };
   }
 
-  renderpykz = () => {
+  renderPykz = () => {
     const { currentMonth, nextMonth } = this.state;
+    const currentYear = this.date.getUTCFullYear();
+
     return (
       <div className={"pykz"}>
         <div className={"pykz__currentMonth"}>
           <div className={"pykz__header"}>
             <h3>
-              {currentMonth} {this.date.getUTCFullYear()}
+              {currentMonth} {currentYear}
             </h3>
           </div>
           <ul className={"pykz__dates"}>{this.renderDates(currentMonth)}</ul>
@@ -46,7 +48,9 @@ class Pykz extends Component {
         {nextMonth && (
           <div className={"pykz__nextMonth"}>
             <div className={"pykz__header"}>
-              <h3>{nextMonth}</h3>
+              <h3>
+                {nextMonth} {getYear({ currentMonth, nextMonth, currentYear })}
+              </h3>
             </div>
             <ul className={"pykz__dates"}>{this.renderDates(nextMonth)}</ul>
           </div>
@@ -90,10 +94,10 @@ class Pykz extends Component {
         {trigger && (
           <Fragment>
             {React.cloneElement(trigger, { onClick: this.toggleDisplayed })}
-            {displayed && this.renderpykz()}
+            {displayed && this.renderPykz()}
           </Fragment>
         )}
-        {!trigger && this.renderpykz()}
+        {!trigger && this.renderPykz()}
       </Fragment>
     );
   }
