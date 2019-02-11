@@ -17,11 +17,12 @@
     "test:watch": "react-scripts test --env=jsdom",
     "build": "npx rollup -c",
     "start": "npx rollup -c -w",
-    "prepare": "npm run build",
+    "prepare": "npm run build && npm run bundlesize",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
     "docz:dev": "docz dev",
-    "docz:build": "docz build"
+    "docz:build": "docz build",
+    "bundlesize": "bundlesize"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -36,6 +37,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "bundlesize": "^0.17.1",
     "cross-env": "^5.1.4",
     "docz": "^0.13.7",
     "enzyme": "^3.8.0",
@@ -65,5 +67,11 @@
   },
   "files": [
     "dist"
+  ],
+  "bundlesize": [
+    {
+      "path": "./dist/*.js",
+      "maxSize": "3 kB"
+    }
   ]
 }
