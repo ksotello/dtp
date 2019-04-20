@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { getMonthName, daysInMonth, getYear } from "./utils";
 
-// import styles from './styles.css'
+import styles from './styles.css'
 
 class Pykz extends Component {
   date = new Date();
@@ -37,14 +37,14 @@ class Pykz extends Component {
     const dates = [];
     let index = 0;
 
-    for (; index < daysInMonth(month); index++) {
+    for (; index < daysInMonth({ month }); index++) {
       let currentDay = index + 1;
       const isCurrentDay = this.date.getDate() === currentDay;
       dates.push(
         <li
           key={currentDay}
-          className={`pykz__date ${
-            isCurrentDay ? "pykz__date--highlighted" : ""
+          className={`${styles.pykz__date} ${
+            isCurrentDay ? `${styles.pykz__highlighted}` : ""
           }`}
         >
           {(dayCell && dayCell({ currentDay, isCurrentDay })) || currentDay}
@@ -61,9 +61,9 @@ class Pykz extends Component {
     const currentYear = this.date.getUTCFullYear();
 
     return (
-      <div className={"pykz"}>
+      <div className={`${styles.pykz}`}>
         <div className={"pykz__currentMonth"}>
-          <div className={"pykz__header"}>
+          <div className={`${styles.pykz__header}`}>
             <h3>
               {(headerCell &&
                 headerCell({
@@ -85,7 +85,7 @@ class Pykz extends Component {
               )}
             </h3>
           </div>
-          <ul className={"pykz__dates"}>{this.renderDates(currentMonth)}</ul>
+          <ul className={`${styles.pykz__dates}`}>{this.renderDates(currentMonth)}</ul>
         </div>
         {nextMonth && (
           <div className={"pykz__nextMonth"}>
@@ -94,7 +94,7 @@ class Pykz extends Component {
                 {nextMonth} {getYear({ currentMonth, nextMonth, currentYear })}
               </h3>
             </div>
-            <ul className={"pykz__dates"}>{this.renderDates(nextMonth)}</ul>
+            <ul className={`${styles.pykz__dates}`}>{this.renderDates(nextMonth)}</ul>
           </div>
         )}
       </div>

@@ -1,8 +1,28 @@
-/* add css styles here (optional) */
 
-.test {
-  display: inline-block;
-  margin: 2em auto;
-  border: 2px solid #000;
-  font-size: 2em;
+.pykz {
+  max-width: 500px;
+}
+
+.pykz__dates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style-type: none;
+}
+
+.pykz__date {
+  height: 50px;
+  width: 50px;
+  text-align: right;
+  border: 1px solid;
+  padding: 5px;
+}
+
+.pykz__highlighted {
+  background-color: blue;
+  color: white;
+}
+
+.pykz__header {
+  text-align: center;
 }
