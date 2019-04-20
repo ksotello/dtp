@@ -164,4 +164,71 @@ describe("<Pykz />", () => {
 
     done();
   });
+
+  it("should display the year as 1989 is the current month is April and the next month is May", done => {
+    const monthSpy = jest.spyOn(Date.prototype, "getMonth");
+    const yearSpy = jest.spyOn(Date.prototype, "getUTCFullYear");
+
+    monthSpy.mockReturnValue(3);
+    yearSpy.mockReturnValue(1989);
+
+    wrapper = mount(<Pykz hasRange />);
+
+    expect(wrapper.render().text()).toMatch(new RegExp("1989"));
+    expect(wrapper.render().text()).toMatch(new RegExp("1989"));
+
+    done();
+  });
+
+  it("should allow for customization of day cells", done => {
+    const monthSpy = jest.spyOn(Date.prototype, "getMonth");
+    const yearSpy = jest.spyOn(Date.prototype, "getUTCFullYear");
+
+    monthSpy.mockReturnValue(3);
+    yearSpy.mockReturnValue(2019);
+
+    wrapper = mount(
+      <Pykz
+        dayCell={({ currentDay, isCurrentDay }) => (
+          <div>
+            The current day is: {currentDay}
+            The day of the week is: {isCurrentDay}
+          </div>
+        )}
+      />
+    );
+
+    expect(wrapper.render().text()).toMatch(new RegExp("The current day is:"));
+    expect(wrapper.render().text()).toMatch(
+      new RegExp("The day of the week is:")
+    );
+
+    done();
+  });
+
+  it("should allow for customization of header cells", done => {
+    const monthSpy = jest.spyOn(Date.prototype, "getMonth");
+    const yearSpy = jest.spyOn(Date.prototype, "getUTCFullYear");
+
+    monthSpy.mockReturnValue(3);
+    yearSpy.mockReturnValue(2019);
+
+    wrapper = mount(
+      <Pykz
+        headerCell={({ currentMonth, currentYear }) => (
+          <div>
+            The current month is: {currentMonth}
+            The year is: {currentYear}
+          </div>
+        )}
+      />
+    );
+
+    expect(wrapper.render().text()).toMatch(
+      new RegExp("The current month is:")
+    );
+    expect(wrapper.render().text()).toMatch(new RegExp("The year is:"));
+
+    done();
+  });
 });

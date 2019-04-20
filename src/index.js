@@ -10,29 +10,54 @@ class Pykz extends Component {
 
   static propTypes = {
     trigger: PropTypes.node,
+    dayCell: PropTypes.func,
+    headerCell: PropTypes.func,
     hasRange: PropTypes.bool
   };
 
   static defaultProps = {
     trigger: null,
+    dayCell: null,
+    headerCell: null,
     hasRange: false
   };
 
-  constructor(props) {
-    super(props);
+  state = {
+    displayed: !this.props.trigger,
+    previousMonth: getMonthName({ monthIndex: this.date.getMonth() - 1 }),
+    currentMonth: getMonthName({ monthIndex: this.date.getMonth() }),
+    nextMonth:
+      this.props.hasRange &&
+      getMonthName({ monthIndex: this.date.getMonth() + 1 })
+  };
 
-    const { trigger, hasRange } = this.props;
+  renderDates = month => {
+    const { dayCell } = this.props;
 
-    this.state = {
-      displayed: !trigger,
-      currentMonth: getMonthName({ monthIndex: this.date.getMonth() }),
-      nextMonth:
-        hasRange && getMonthName({ monthIndex: this.date.getMonth() + 1 })
-    };
-  }
+    const dates = [];
+    let index = 0;
+
+    for (; index < daysInMonth(month); index++) {
+      let currentDay = index + 1;
+      const isCurrentDay = this.date.getDate() === currentDay;
+      dates.push(
+        <li
+          key={currentDay}
+          className={`pykz__date ${
+            isCurrentDay ? "pykz__date--highlighted" : ""
+          }`}
+        >
+          {(dayCell && dayCell({ currentDay, isCurrentDay })) || currentDay}
+        </li>
+      );
+    }
+
+    return dates;
+  };
 
   renderPykz = () => {
-    const { currentMonth, nextMonth } = this.state;
+    const { currentMonth, nextMonth, previousMonth } = this.state;
+    const { headerCell } = this.props;
     const currentYear = this.date.getUTCFullYear();
 
     return (
@@ -40,7 +65,24 @@ class Pykz extends Component {
         <div className={"pykz__currentMonth"}>
           <div className={"pykz__header"}>
             <h3>
-              {currentMonth} {currentYear}
+              {(headerCell &&
+                headerCell({
+                  currentMonth,
+                  currentYear: getYear({
+                    currentMonth: previousMonth,
+                    nextMonth: currentMonth,
+                    currentYear
+                  })
+                })) || (
+                <Fragment>
+                  {currentMonth}
+                  {getYear({
+                    currentMonth: previousMonth,
+                    nextMonth: currentMonth,
+                    currentYear
+                  })}
+                </Fragment>
+              )}
             </h3>
           </div>
           <ul className={"pykz__dates"}>{this.renderDates(currentMonth)}</ul>
@@ -57,27 +99,6 @@ class Pykz extends Component {
         )}
       </div>
     );
-  };
-
-  renderDates = month => {
-    const dates = [];
-    let index = 0;
-
-    for (; index < daysInMonth(month); index++) {
-      let currentDay = index + 1;
-      dates.push(
-        <li
-          key={currentDay}
-          className={`pykz__date ${
-            this.date.getDate() === currentDay ? "pykz__date--highlighted" : ""
-          }`}
-        >
-          {currentDay}
-        </li>
-      );
-    }
-
-    return dates;
   };
 
   toggleDisplayed = () => {
